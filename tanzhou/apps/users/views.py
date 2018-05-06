@@ -7,7 +7,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 
-from users.forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm, ChangePwdForm, UploadImageForm
+from users.forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm, ChangePwdForm, UploadImageForm, UploadInfoForm
 from users.models import UserInfo, EmailVerify
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
@@ -151,13 +151,13 @@ class UserInfoView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'my_info.html', {})
 
-    # def post(self, request):
-    #     info_form = UploadInfoForm(request.POST, instance=request.user)
-    #     if info_form.is_valid():
-    #         info_form.save()
-    #         return HttpResponseRedirect(reverse("i:info"))
-    #     else:
-    #         return render(request, 'my_info.html', {'info_form': info_form})
+    def post(self, request):
+        info_form = UploadInfoForm(request.POST, instance=request.user)
+        if info_form.is_valid():
+            info_form.save()
+            return HttpResponseRedirect(reverse("i:info"))
+        else:
+            return render(request, 'my_info.html', {'info_form': info_form})
 
 
 class ChangePwdView(LoginRequiredMixin, View):
