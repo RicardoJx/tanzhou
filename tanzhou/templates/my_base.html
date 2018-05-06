@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="{% static 'images/favicon.ico-v=2.0.5.png' %}" rel="shortcut icon" type="image/x-icon">
+    <title>潭州课堂</title>
+
+    <script type="text/javascript" src="{% static 'css/user/index.css' %}"></script>
+    <link href="{% static 'css/user/index.css' %}" rel="stylesheet">
+    {% block custom_css %}
+    {% endblock %}
+
+
+</head>
+<body>
+<div id="root">
+    <div data-reactroot="" id="reactRoot">
+        <div class="_13dEg">
+            <div class="PDZyl">
+                <div class="_3it4G"><a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"
+                                                                                alt="logo"></a></div>
+                <div class="_3phvK"><a href="{% url 'index' %}">首页</a><a
+                        href="https://www.shiguangkey.com/course/list">全部课程</a><a
+                        href="https://www.shiguangkey.com/help/downloadApp">客户端</a></div>
+                        <div class="_9URcm"><input type="text" placeholder="搜索课程关键词"><a href="javascript:;">搜索</a></div>
+                        <div class="YrVqW"><img title="" src="{{ MEDIA_URL }}{{ request.user.image }}" alt=""><span></span>
+                    <ul>
+                        <li><a href="{% url 'logout' %}">退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+
+            <div class="_3e23-">
+                <ul>
+                    <li class=""><a href="https://www.shiguangkey.com/i/course">我的课程表</a></li>
+                    <li class=""><a href="https://www.shiguangkey.com/i/order">我的订单</a></li>
+                    <li class=""><a href="https://www.shiguangkey.com/i/homework">我的作业</a></li>
+                    <li class="hWd71"><a href="{% url 'i:info' %}">个人资料</a></li>
+                </ul>
+            </div>
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+        <div class="_114Y9">
+            <div class="_2d7k0">
+                <div class="_1xtci">
+                    <div class="_2Zlgq"><a href="https://www.shiguangkey.com/help/student">帮助中心</a>
+                        <p>Copyright © 2017 All Rights Reserved 版权所有：湖南潭州教育网络科技有限公司 备案号：湘ICP备17002945号-1</p></div>
+                </div>
+                <div class="_1xUyh"><img src="{% static 'images/safe.png' %}" alt=""></div>
+                <div class="_2WFse">
+                    <div class="_28zgr"><a href="javascript:;"><img width="65" height="65" src="{% static 'images/weixin.jpg' %}" alt="">
+                        <div>官方微信</div>
+                    </a><a href="javascript:;"><img width="65" height="65" src="{% static 'images/weibo.png' %}" alt="">
+                        <div>官方微博</div>
+                    </a></div>
+                    <div class="bASJk"><h1><img src="{% static 'images/phoneimg.png' %}" alt=""> 联系我们 </h1>
+                        <h2><img src="{% static 'images/phonenum.jpg' %}" alt=""></h2></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8" async=""
+        src="{% static 'js/user/6.35b33d655a7eafd5dd31.js' %}"></script>
+<script type="text/javascript" charset="utf-8" async=""
+        src="{% static 'js/user/1.d3a8b0247c920eab6a62.js' %}"></script>
+<script src="{% static 'js/media.match.min.js' %}"></script>
+
+{% block custom_js%}
+{% endblock %}
+</body>
+</html>

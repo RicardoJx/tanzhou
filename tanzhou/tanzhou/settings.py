@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,8 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'users'
+    'course',
+    'bootstrap4',
+    'captcha'
 ]
+
+AUTH_USER_MODEL = 'users.UserInfo'
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'  # 这个是用来配置media的路径
             ],
         },
     },
@@ -82,14 +93,16 @@ WSGI_APPLICATION = 'tanzhou.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': "127.0.0.1",
-        "PORT": 3306,
-        "USER": "develop",
-        "PASSWORD": "QWEqwe123",
         "NAME": "tanzhoudb",
+        'HOST': "127.0.0.1",
+        "PORT": "3306",
+        "USER": "develoo",
+        "PASSWORD": "QWEqwe123",
+
     }
 }
 
@@ -131,3 +144,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+# QQ 邮箱发送
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 465  # SSL  # 第三种配置方式
+# EMAIL_PORT = 587  #  TSL  # 第二种配置方式
+# EMAIL_PORT = 25   #第一种配置方式
+EMAIL_HOST_USER = "1163652387@qq.com"
+EMAIL_HOST_PASSWORD = "oltpcruiawcbbaed"
+# EMAIL_USE_TLS = True  #第一种配置方式 # 第二种配置方式
+EMAIL_USE_SSL = True   #第三种配置方式
+EMAIL_FROM = "1163652387@qq.com"
+
+#  配置关于文件上传的设置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

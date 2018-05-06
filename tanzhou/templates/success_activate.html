@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>激活</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px solid burlywood;
+            margin: 100px auto;
+        }
+        div span{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>恭喜已经激活,<span id="timer">5s</span>后将跳转到登录页面</p>
+    </div>
+    <script>
+        var timer =document.getElementById("timer");
+        var num=5;
+        var time;
+        time=setInterval(function () {
+            num--;
+            timer.innerHTML=num+"s";
+            if (num===1) {
+                clearInterval(time);
+                window.location.href="{% url 'login' %}";
+            }
+        },1000)
+    </script>
+</body>
+</html>
